@@ -1,0 +1,86 @@
+﻿@using RailwayReservationSystem.Models;
+@*@Model dynamic;*@
+
+@*@{
+        ViewBag.Title = "History";
+    }*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="TrainList" content="width=device-width, initial-scale=1">
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #473ce9;
+            color: white;
+        }
+
+        .confirm {
+            background-color: rgb(209, 64, 64);
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <span style="font-size:1.35rem">Booking History</span>@Html.TextBox("searching", ViewBag.Id as string)
+        <input type="submit" value="Search" />
+    }
+    <br />
+    <table style="font-size:1.15rem">
+        <tr>
+            <th>
+                UserId
+            </th>
+            <th>
+                Train_No
+
+            </th>
+            <th>
+                PNR_No
+            </th>
+            <th>
+                Total_No_Of_Seats
+            </th>
+            <th>
+                DOJ
+            </th>
+
+        </tr>
+
+        @foreach (Passenger_Details item in Model.History)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.User_Id) </td>
+                <td>@Html.DisplayFor(modelItem => item.Train_No) </td>
+                <td>@Html.DisplayFor(modelItem => item.PNR_No) </td>
+                <td>@Html.DisplayFor(modelItem => item.Total_No_Of_Seats) </td>
+                <td>@Html.DisplayFor(modelItem => item.DOJ) </td>
+
+                <td>
+                    @Html.ActionLink("Cancel", "Index", new { UserId = item.User_Id }, new { @class = "my-class" })
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+﻿@model RailwayReservationSystem.Models.Calculate_Amount
+
+@{
+    ViewBag.Title = "Amount";
+}
+
+<h2>Amount</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+
+@TempData["Result"]
+
+<table>
+    <tr>
+        <th> Amount </th>
+        <td><input type="text" class="form-control" value="@TempData["Result"]" /> </td>
+    </tr>
+
+</table>}
+</div>

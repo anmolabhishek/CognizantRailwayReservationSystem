@@ -1,0 +1,106 @@
+﻿@model IEnumerable<RailwayReservationSystem.Models.Train_Details>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="TrainList" content="width=device-width, initial-scale=1">
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #473ce9;
+            color: white;
+        }
+
+        .confirm {
+            background-color: rgb(209, 64, 64);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train_Name)
+            </th>
+            <th class="confirm">Edit Details</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Train_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Train_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Train_No }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Train_No }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Train_No })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </body>
+</html>

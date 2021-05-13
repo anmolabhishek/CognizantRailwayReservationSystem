@@ -1,0 +1,433 @@
+﻿@model RailwayReservationSystem.Models.Passenger_Details
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+           @@import url('https://fonts.googleapis.com/css?family=Arima+Madurai:300');
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+h1 {
+  font-family: 'Arima Madurai', cursive;
+  color: rgb(7, 11, 65);
+  font-size: 2rem;
+  letter-spacing: -3px;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 1;
+  margin-top: -350px;
+  text-align:center;
+ /* margin-left:250px;*/
+}
+.container {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35rem;
+  background-image: linear-gradient(to left, #7787f1, #473ce9), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-position: center center;
+  padding: 2rem;
+  height: 600px;
+  width:100%;
+}
+.bird {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells-new.svg);
+  background-size: auto 100%;
+  width: 88px;
+  height: 125px;
+  will-change: background-position;
+  animation-name: fly-cycle;
+  animation-timing-function: steps(10);
+  animation-iteration-count: infinite;
+}
+.bird--one {
+  animation-duration: 1s;
+  animation-delay: -0.5s;
+}
+.bird--two {
+  animation-duration: 0.9s;
+  animation-delay: -0.75s;
+}
+.bird--three {
+  animation-duration: 1.25s;
+  animation-delay: -0.25s;
+}
+.bird--four {
+  animation-duration: 1.1s;
+  animation-delay: -0.5s;
+}
+.bird-container {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  transform: scale(0) translateX(-10vw);
+  will-change: transform;
+  animation-name: fly-right-one;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.bird-container--one {
+  animation-duration: 15s;
+  animation-delay: 0;
+}
+.bird-container--two {
+  animation-duration: 16s;
+  animation-delay: 1s;
+}
+.bird-container--three {
+  animation-duration: 14.6s;
+  animation-delay: 9.5s;
+}
+.bird-container--four {
+  animation-duration: 16s;
+  animation-delay: 10.25s;
+}
+@@keyframes fly-cycle {
+  100% {
+    background-position: -900px 0;
+  }
+}
+@@keyframes fly-right-one {
+  0% {
+    transform: scale(0.3) translateX(-10vw);
+  }
+  10% {
+    transform: translateY(2vh) translateX(10vw) scale(0.4);
+  }
+  20% {
+    transform: translateY(0vh) translateX(30vw) scale(0.5);
+  }
+  30% {
+    transform: translateY(4vh) translateX(50vw) scale(0.6);
+  }
+  40% {
+    transform: translateY(2vh) translateX(70vw) scale(0.6);
+  }
+  50% {
+    transform: translateY(0vh) translateX(90vw) scale(0.6);
+  }
+  60% {
+    transform: translateY(0vh) translateX(110vw) scale(0.6);
+  }
+  100% {
+    transform: translateY(0vh) translateX(110vw) scale(0.6);
+  }
+}
+@@keyframes fly-right-two {
+  0% {
+    transform: translateY(-2vh) translateX(-10vw) scale(0.5);
+  }
+  10% {
+    transform: translateY(0vh) translateX(10vw) scale(0.4);
+  }
+  20% {
+    transform: translateY(-4vh) translateX(30vw) scale(0.6);
+  }
+  30% {
+    transform: translateY(1vh) translateX(50vw) scale(0.45);
+  }
+  40% {
+    transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
+  }
+  50% {
+    transform: translateY(0vh) translateX(90vw) scale(0.45);
+  }
+  51% {
+    transform: translateY(0vh) translateX(110vw) scale(0.45);
+  }
+  100% {
+    transform: translateY(0vh) translateX(110vw) scale(0.45);
+  }
+}
+.login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+  width: 760px;
+  padding: 30px;
+  background-color: #7787f1;
+  color: white;
+  font-family: 'Montserrat',sans-serif;
+  box-shadow: -4px 4px 12px 1px rgba(0,0,0,0.4);
+  opacity: 0.9;
+  margin-top: 120px;
+}
+.login header {
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 33px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  color: rgb(7, 11, 65);
+}
+.field {
+  background-color: #fff;
+  width: 240px;
+  margin-bottom: 15px;
+  display: flex;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.field input {
+  width: 100%;
+  height: 35px;
+  font-size: 1.1rem;
+  padding: 5px;
+  color: #34495e;
+  border: none;
+}
+.field input::placeholder {
+  color: #95a5a6;
+}
+
+input:focus, input:active, input:hover {
+  outline: none;
+}
+.confirm{
+  background-color: rgb(7, 11, 65);
+  width: 240px;
+  margin-bottom: 15px;
+  display: flex;
+  padding: 5px;
+  margin-right: 5px;
+  height: 47px;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  border: 0px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Book Your Ticket</h1>
+
+        <div class="bird-container bird-container--one">
+            <div class="bird bird--one"></div>
+        </div>
+
+        <div class="bird-container bird-container--two">
+            <div class="bird bird--two"></div>
+        </div>
+
+        <div class="login">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <header>Passenger Details</header>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div style="display:flex;">
+                <div>
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.User_Id, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.User_Id, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.User_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Passenger_Name1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Passenger_Name1, new { htmlAttributes = new { placeholder = "Passenger 1" } })
+                            @Html.ValidationMessageFor(model => model.Passenger_Name1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Passenger_Name2, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Passenger_Name2, new { htmlAttributes = new { placeholder = "Passenger 2" } })
+                            @Html.ValidationMessageFor(model => model.Passenger_Name2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Passenger_Name3, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Passenger_Name3, new { htmlAttributes = new { placeholder = "Passenger 3" } })
+                            @Html.ValidationMessageFor(model => model.Passenger_Name3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { placeholder = "Contact No" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Train_No, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Train_No, new { htmlAttributes = new { placeholder = "Train Number" } })
+                            @Html.ValidationMessageFor(model => model.Train_No, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Select_Seat_P1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.DropDownList("Select_Seat_P1", new List<SelectListItem> {
+                       new SelectListItem{Text="Lower"},
+                        new SelectListItem{Text="Middle"},
+                         new SelectListItem{Text="Upper"}
+                          }, "Select Seat", new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.Select_Seat_P1, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.Select_Seat_P1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Select_Seat_P2, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.DropDownList("Select_Seat_P2", new List<SelectListItem> {
+                       new SelectListItem{Text="Lower"},
+                        new SelectListItem{Text="Middle"},
+                         new SelectListItem{Text="Upper"}
+                          }, "Select Seat", new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.Select_Seat_P2, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.Select_Seat_P2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Select_Seat_P3, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.DropDownList("Select_Seat_P3", new List<SelectListItem> {
+                       new SelectListItem{Text="Lower"},
+                        new SelectListItem{Text="Middle"},
+                         new SelectListItem{Text="Upper"}
+                          }, "Select Seat", new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.Select_Seat_P3, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.Select_Seat_P3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.DropDownList("Class", new List<SelectListItem> {
+                       new SelectListItem{Text="General"},
+                        new SelectListItem{Text="Sleeper"},
+                         new SelectListItem{Text="AC1"},
+                          new SelectListItem{Text="AC2"},
+                           new SelectListItem{Text="AC3"}
+
+                       }, "Select Class", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Date_Of_Booking, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+
+                            @Html.TextBox("Date_Of_Booking", DateTime.Today, new { @class = "text input" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.DOJ, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.DOJ, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DOJ, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Total_No_Of_Seats, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="field">
+                            @Html.EditorFor(model => model.Total_No_Of_Seats, new { htmlAttributes = new { placeholder = "Total No Of Seats" } })
+                            @Html.ValidationMessageFor(model => model.Total_No_Of_Seats, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 confirm">
+                            <input type="submit" style="font-weight:700;" value="Confirm Booking" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                    }
+            </div>
+
+                            @*<form action="/" class="login">
+
+                                <header>Passenger Details</header>
+                                <hr />
+                                <div style="display: flex;">
+                                    <div>
+                                        <div class="field"><input type="text" placeholder="User Id"></div>
+                                        <div class="field"><input type="text" placeholder="Phone Number"></div>
+                                        <div class="field"><input type="text" placeholder="Email Id"></div>
+                                        <div class="field"><input type="text" placeholder="Train Number"></div>
+                                        <div class="field"><input type="text" placeholder="Passenger 1"></div>
+                                    </div>
+                                    <div>
+
+                                        <div class="field"><input type="text" placeholder="Passenger 2"></div>
+                                        <div class="field"><input type="text" placeholder="Passenger 3"></div>
+
+                                        <div class="field"><input type="text" placeholder="Seat for Passenger 1"></div>
+                                        <div class="field"><input type="text" placeholder="seat for Passenger 2"></div>
+                                        <div class="field"><input type="text" placeholder="seat for Passenger 3"></div>
+
+                                    </div>
+                                    <div>
+                                        <div class="field"><input type="text" placeholder="Class"></div>
+                                        <div class="field"><input type="text" placeholder="Date of Booking"></div>
+                                        <div class="field"><input type="text" placeholder="Date of Journey"></div>
+                                        <div class="field"><input type="text" placeholder="Total Seats"></div>
+                                        <button class="confirm"><p style="font-weight: 700;">Confirm Booking</p></button>
+                                    </div>
+                                </div>
+                            </form>*@
+
+
+                            <div class="bird-container bird-container--three">
+                                <div class="bird bird--three"></div>
+                            </div>
+
+                            <div class="bird-container bird-container--four">
+                                <div class="bird bird--four"></div>
+                            </div>
+
+                        </div>
+
+                    </body>
+                    </html>

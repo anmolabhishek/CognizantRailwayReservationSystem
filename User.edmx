@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RailwayReservationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calculate_Amount">
+          <Key>
+            <PropertyRef Name="amount_id" />
+          </Key>
+          <Property Name="User_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Total_No_Of_Seats" Type="int" Nullable="false" />
+          <Property Name="PNR_No" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="amount_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passenger_Details">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="User_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passenger_Name1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passenger_Name2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Passenger_Name3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Train_No" Type="int" Nullable="false" />
+          <Property Name="Select_Seat_P1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Select_Seat_P2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Select_Seat_P3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Class" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date_Of_Booking" Type="date" Nullable="false" />
+          <Property Name="DOJ" Type="date" Nullable="false" />
+          <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Total_No_Of_Seats" Type="int" Nullable="false" />
+          <Property Name="PNR_No" Type="nvarchar" MaxLength="80" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Payment_Details">
+          <Key>
+            <PropertyRef Name="CVV" />
+          </Key>
+          <Property Name="Card_No" Type="bigint" Nullable="false" />
+          <Property Name="Card_Holder_Name" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Card_Type" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Expiry_Date" Type="date" Nullable="false" />
+          <Property Name="CVV" Type="int" Nullable="false" />
+          <Property Name="Available_Balance" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RailwayReservationSystem.dbo.Search_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Search_Details">
+          <Key>
+            <PropertyRef Name="Source" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="DOJ" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Source" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Destination" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="DOJ" Type="date" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Stn_Code" />
+          </Key>
+          <Property Name="Stn_Name" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Stn_Code" Type="int" Nullable="false" />
+          <Property Name="Arrival_Time" Type="time" Precision="0" />
+          <Property Name="Departure_Time" Type="time" Precision="0" />
+          <Property Name="Train_No" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Train_Details">
+          <Key>
+            <PropertyRef Name="Train_No" />
+          </Key>
+          <Property Name="Source" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Destination" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Start_Date" Type="date" Nullable="false" />
+          <Property Name="End_Date" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="End_Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Train_Type" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Train_No" Type="int" Nullable="false" />
+          <Property Name="Train_Name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="FirstName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Dob" Type="date" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactNo" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Type" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_PaymentDetails">
+          <End Role="User_Details" Type="Self.User_Details" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment_Details" Type="Self.Payment_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Payment_Details">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Train_Station">
+          <End Role="Train_Details" Type="Self.Train_Details" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Station" Type="Self.Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train_Details">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="Station">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Station_details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RailwayReservationSystemModelStoreContainer">
+          <EntitySet Name="Calculate_Amount" EntityType="Self.Calculate_Amount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passenger_Details" EntityType="Self.Passenger_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_Details" EntityType="Self.Payment_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Train_Details" EntityType="Self.Train_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Search_Details" EntityType="Self.Search_Details" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Search_Details].[Source] AS [Source], 
+    [Search_Details].[Destination] AS [Destination], 
+    [Search_Details].[DOJ] AS [DOJ], 
+    [Search_Details].[id] AS [id]
+    FROM [dbo].[Search_Details] AS [Search_Details]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PaymentDetails" Association="Self.FK_PaymentDetails">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Payment_Details" EntitySet="Payment_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Train_Station" Association="Self.FK_Train_Station">
+            <End Role="Train_Details" EntitySet="Train_Details" />
+            <End Role="Station" EntitySet="Station" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RailwayReservationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Passenger_Details">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passenger_Name1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passenger_Name2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Passenger_Name3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Train_No" Type="Int32" Nullable="false" />
+          <Property Name="Select_Seat_P1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Select_Seat_P2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Select_Seat_P3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Class" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_Of_Booking" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOJ" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Total_No_Of_Seats" Type="Int32" Nullable="false" />
+          <Property Name="PNR_No" Type="String" MaxLength="80" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Stn_Code" />
+          </Key>
+          <Property Name="Stn_Name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Stn_Code" Type="Int32" Nullable="false" />
+          <Property Name="Arrival_Time" Type="Time" Precision="0" />
+          <Property Name="Departure_Time" Type="Time" Precision="0" />
+          <Property Name="Train_No" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Train_Details" Relationship="Self.FK_Train_Station" FromRole="Station" ToRole="Train_Details" />
+        </EntityType>
+        <EntityType Name="Train_Details">
+          <Key>
+            <PropertyRef Name="Train_No" />
+          </Key>
+          <Property Name="Source" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Destination" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="End_Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Train_Type" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Train_No" Type="Int32" Nullable="false" />
+          <Property Name="Train_Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Station" Relationship="Self.FK_Train_Station" FromRole="Train_Details" ToRole="Station" />
+        </EntityType>
+        <EntityType Name="User_Details">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNo" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Payment_Details" Relationship="RailwayReservationSystemModel.FK_PaymentDetails" FromRole="User_Details" ToRole="Payment_Details" />
+        </EntityType>
+        <Association Name="FK_Train_Station">
+          <End Role="Train_Details" Type="Self.Train_Details" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Station" Type="Self.Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train_Details">
+              <PropertyRef Name="Train_No" />
+            </Principal>
+            <Dependent Role="Station">
+              <PropertyRef Name="Train_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RailwayReservationSystemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Passenger_Details" EntityType="Self.Passenger_Details" />
+          <EntitySet Name="Station" EntityType="Self.Station" />
+          <EntitySet Name="Train_Details" EntityType="Self.Train_Details" />
+          <EntitySet Name="User_Details" EntityType="Self.User_Details" />
+          <AssociationSet Name="FK_Train_Station" Association="Self.FK_Train_Station">
+            <End Role="Train_Details" EntitySet="Train_Details" />
+            <End Role="Station" EntitySet="Station" />
+          </AssociationSet>
+          <FunctionImport Name="Station_details" ReturnType="Collection(RailwayReservationSystemModel.Station_details_Result)" />
+          <EntitySet Name="Payment_Details" EntityType="RailwayReservationSystemModel.Payment_Details" />
+          <AssociationSet Name="FK_PaymentDetails" Association="RailwayReservationSystemModel.FK_PaymentDetails">
+            <End Role="User_Details" EntitySet="User_Details" />
+            <End Role="Payment_Details" EntitySet="Payment_Details" />
+          </AssociationSet>
+          <EntitySet Name="Search_Details" EntityType="RailwayReservationSystemModel.Search_Details" />
+          <EntitySet Name="Calculate_Amount" EntityType="RailwayReservationSystemModel.Calculate_Amount" />
+        </EntityContainer>
+        <ComplexType Name="Station_details_Result">
+          <Property Type="String" Name="Stn_Name" Nullable="false" MaxLength="30" />
+          <Property Type="Time" Name="Arrival_time" Nullable="true" />
+          <Property Type="Time" Name="departure_time" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Payment_Details">
+          <Key>
+            <PropertyRef Name="CVV" />
+          </Key>
+          <Property Name="Card_No" Type="Int64" Nullable="false" />
+          <Property Name="Card_Holder_Name" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Card_Type" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Expiry_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CVV" Type="Int32" Nullable="false" />
+          <Property Name="Available_Balance" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User_Details" Relationship="RailwayReservationSystemModel.FK_PaymentDetails" FromRole="Payment_Details" ToRole="User_Details" />
+        </EntityType>
+        <Association Name="FK_PaymentDetails">
+          <End Type="RailwayReservationSystemModel.User_Details" Role="User_Details" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RailwayReservationSystemModel.Payment_Details" Role="Payment_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Details">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Payment_Details">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Search_Details">
+          <Key>
+            <PropertyRef Name="Source" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="DOJ" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Destination" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="DOJ" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Calculate_Amount">
+          <Key>
+            <PropertyRef Name="amount_id" />
+          </Key>
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Class" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Total_No_Of_Seats" Type="Int32" Nullable="false" />
+          <Property Name="PNR_No" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="amount_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RailwayReservationSystemModelStoreContainer" CdmEntityContainer="RailwayReservationSystemEntities1">
+          <EntitySetMapping Name="Passenger_Details">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Passenger_Details">
+              <MappingFragment StoreEntitySet="Passenger_Details">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Passenger_Name1" ColumnName="Passenger_Name1" />
+                <ScalarProperty Name="Passenger_Name2" ColumnName="Passenger_Name2" />
+                <ScalarProperty Name="Passenger_Name3" ColumnName="Passenger_Name3" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+                <ScalarProperty Name="Select_Seat_P1" ColumnName="Select_Seat_P1" />
+                <ScalarProperty Name="Select_Seat_P2" ColumnName="Select_Seat_P2" />
+                <ScalarProperty Name="Select_Seat_P3" ColumnName="Select_Seat_P3" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Date_Of_Booking" ColumnName="Date_Of_Booking" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="Total_No_Of_Seats" ColumnName="Total_No_Of_Seats" />
+                <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Station">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="Stn_Name" ColumnName="Stn_Name" />
+                <ScalarProperty Name="Stn_Code" ColumnName="Stn_Code" />
+                <ScalarProperty Name="Arrival_Time" ColumnName="Arrival_Time" />
+                <ScalarProperty Name="Departure_Time" ColumnName="Departure_Time" />
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Train_Details">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Train_Details">
+              <MappingFragment StoreEntitySet="Train_Details">
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Train_Type" ColumnName="Train_Type" />
+                <ScalarProperty Name="Train_No" ColumnName="Train_No" />
+                <ScalarProperty Name="Train_Name" ColumnName="Train_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Details">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.User_Details">
+              <MappingFragment StoreEntitySet="User_Details">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Station_details" FunctionName="RailwayReservationSystemModel.Store.Station_details">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RailwayReservationSystemModel.Station_details_Result">
+                <ScalarProperty Name="Stn_Name" ColumnName="Stn_Name" />
+                <ScalarProperty Name="Arrival_time" ColumnName="Arrival_time" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Payment_Details">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Payment_Details">
+              <MappingFragment StoreEntitySet="Payment_Details">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Available_Balance" ColumnName="Available_Balance" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="Expiry_Date" ColumnName="Expiry_Date" />
+                <ScalarProperty Name="Card_Type" ColumnName="Card_Type" />
+                <ScalarProperty Name="Card_Holder_Name" ColumnName="Card_Holder_Name" />
+                <ScalarProperty Name="Card_No" ColumnName="Card_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Search_Details">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Search_Details">
+              <MappingFragment StoreEntitySet="Search_Details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calculate_Amount">
+            <EntityTypeMapping TypeName="RailwayReservationSystemModel.Calculate_Amount">
+              <MappingFragment StoreEntitySet="Calculate_Amount">
+                <ScalarProperty Name="amount_id" ColumnName="amount_id" />
+                <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
+                <ScalarProperty Name="Total_No_Of_Seats" ColumnName="Total_No_Of_Seats" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

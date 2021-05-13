@@ -1,0 +1,278 @@
+﻿@*@{
+        ViewBag.Title = "Search";
+    }
+
+
+
+    <h2>Search</h2>*@
+
+
+
+@model RailwayReservationSystem.Models.Search
+
+
+
+@*@{ ViewBag.Title = "Search"; }
+
+
+
+    <h2>Search</h2>
+
+
+
+    @using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+
+
+                    <div class="form-horizontal">
+                        <h4>Search</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Source, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Source, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Source, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Destination, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Destination, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Doj, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Doj, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Doj, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>}
+
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<!DOCTYPE html>
+
+<html >
+<head>
+    <meta charset="utf-8" />
+    
+
+
+    <style>
+@@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background: #fff;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url(https://images.alphacoders.com/295/295883.jpg);
+    background-size: 100% 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .container .box {
+        position: relative;
+        width: 50%;
+        background: rgba(0,0,0,.8);
+        box-sizing: border-box;
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+        .container .box h1 {
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .container .box .row{
+            position: relative;
+            width: 100%;
+            margin: 30px 0;
+            display:flex;
+        }
+
+            .container .box .row input {
+                width: 100%;
+                position: relative;
+                border: none;
+                outline: none;
+                font-size: 18px;
+                padding: 10px 0;
+                color: #fff;
+                border-bottom: 2px solid #fff;
+                background: transparent;
+                z-index: 2;
+                float: left;
+
+
+            }
+
+                .container .box .row input:focus, .container .box .row input:valid {
+                    border-bottom: 2px solid #2196f3;
+                }
+
+
+
+            .container .box .row label {
+                display: inline-block;
+                position: absolute;
+
+                left: 0;
+                transform: translateY(-50%);
+                color: #fff;
+                font-size: 18px;
+                transition: .9s;
+                z-index: 1;
+                top: 2px;
+                right: 100%;
+                width: 100%;
+                margin-right: -100%;
+                bottom: 2px;
+            }
+
+             .container .box .field label {
+                 color: #fff;
+                  font-size: 18px;
+             }
+
+
+            .container .box .row input:focus + label, .container .box .row input:valid + label {
+                top: 0;
+                color: #2196f3;
+                font-size: 15px;
+                right: 0;
+                margin-right: 0;
+                width: 40%;
+                padding-top: 5px;
+                float:left;
+            }
+
+.container .box .button {
+        padding: 25px 0 0 0;
+        text-align: center;
+
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Plan your journey!!</h1>
+            <div class="go-right">
+                @*<div class="row">
+
+            <input type="text" id="source" name="source"><br>
+            <label for="source">Source:</label><br>
+
+        </div>
+        <div class="row">
+
+            <input type="text" id="destination" name="destination"><br>
+            <label for="destination">Destination:</label><br>
+
+        </div>
+        <div class="field">
+            <label for="source">Date of Journey:</label><br>
+            <input type="date" id="dateofjourney" name="dateofjourney"><br>
+
+
+        </div>*@
+
+
+                @using (Html.BeginForm())
+                {
+            @Html.AntiForgeryToken()
+
+
+
+                            <div class="form-horizontal">
+                                <h4>Search</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Source, htmlAttributes: new { @class = "control-label col-md-2",style="margin-top:7px" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Source, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Source, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Destination, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Destination, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group field">
+                                    @Html.LabelFor(model => model.Doj, htmlAttributes: new { @class = "control-label col-md-2" ,style="width:110px"})
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Doj, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Doj, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Search" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>}
+
+
+            </div>
+            @*<div class="button">
+                <button type="button">Search Trains</button>
+
+            </div>*@
+        </div>
+    </div>
+
+
+</body>
+</html>

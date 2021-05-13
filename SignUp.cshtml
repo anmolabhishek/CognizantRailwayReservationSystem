@@ -1,0 +1,417 @@
+﻿@model RailwayReservationSystem.Models.User_Details
+
+@*@{
+    ViewBag.Title = "SignUp";
+}*@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>W3.CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #fffF;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 450px;
+            margin-left: -15px;
+            /*position: relative;*/
+            /*            box-shadow: 2px 5px 7px 0px #9D9D9D;*/
+            overflow: hidden;
+        }
+
+        .login-body {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(to left, #dddfec, #473ce9);
+            position: absolute;
+            top: -300px;
+            box-sizing: border-box;
+            padding: 6%;
+            transition: all 0.5s ease-in-out;
+            z-index: 11;
+        }
+
+        .text {
+            margin-left: 20px;
+            color: #fff;
+            display: none;
+            transition: all 0.5s ease-in-out;
+            transition-delay: 0.3s;
+        }
+
+        a, a:visited {
+            font-size: 36px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+        }
+
+        hr {
+            width: 10%;
+            float: left;
+            background-color: #fff;
+            font-size: 16px;
+        }
+
+        input {
+            margin-top: 15px;
+            height: 40px;
+            width: 240px;
+            border-radius: 2px;
+            border: none;
+            background-color: #fff;
+            opacity: 0.6;
+            outline: none;
+            color: #000;
+            padding-left: 10px;
+        }
+
+            input[type=text] {
+                margin-top: 60px;
+            }
+
+        button {
+            margin-top: 60px;
+            height: 40px;
+            width: 140px;
+            outline: none;
+        }
+
+        .login-btn {
+            background: white;
+            border: none;
+            border-radius: 2px;
+            color: #000;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            background: transparent;
+            border: 2px solid #fff;
+            width: 220px;
+            border-radius: 2px;
+            color: #fff;
+            margin-left: 30px;
+            height: 38px;
+            display: flex;
+            text-align: center;
+            font-size: 12px;
+            align-self: center;
+            justify-content: center;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        .cta {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid rgb(76, 76, 231);
+            position: absolute;
+            bottom: -30px;
+            left: 590px;
+            color: blue;
+            outline: none;
+            cursor: pointer;
+            z-index: 11;
+        }
+
+        .title-body {
+            background-color: #fff;
+            width: 100%;
+            height: 450px;
+            position: absolute;
+            bottom: 0;
+            padding: 10%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-top: -10px;
+            color: #333;
+            background-color: #fff;
+            opacity: 0.6;
+            width: 80%;
+            margin-left: 110px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(91, 9, 223, 0.2), 0 6px 20px 0 rgbrgba(8, 68, 233, 0.2)
+        }
+
+        span {
+            color: rgb(6, 10, 240);
+            font-weight: bolder;
+        }
+
+        button {
+            height: 40px;
+            width: 180px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(to left, #7787f1, #473ce9);
+            color: #fff;
+            font-weight: bolder;
+            margin-top: 60px;
+            cursor: pointer;
+            outline: none;
+            margin-left: 18px;
+        }
+
+        .butn {
+            background-color: cornsilk;
+        }
+
+        .show-hide {
+            display: block;
+        }
+
+        .expand {
+            transform: translateY(300px);
+        }
+
+        .log-in-button {
+            margin-left: -60px;
+        }
+
+        .sign-up-body {
+            margin-left: -27px;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .bg1 {
+            background-image: url('/images/Train1.jpeg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .bg2 {
+            background-image: url('/images/Train2.jpeg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .bg3 {
+            background-image: url('/images/Train3.jpeg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .form-details {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .buttons{
+            display:flex;
+        }
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="login-body">
+            <button class="cta">Sign Up</button>
+
+            @*<form class="text col-md-4">*@
+            <a>Onboard & Enjoy The Journey</a>
+            <hr>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-horizontal form-details">
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    placeholder = "First Name",
+                           style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px; margin-right:5px; "
+                       }
+                            })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName, new
+                            {
+                                htmlAttributes = new
+                                {
+                                    placeholder = "Last Name",
+                           style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px;"
+                       }
+                            })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { placeholder = "Gender", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding-left: 10px;  border: 0px; margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Dob, new { htmlAttributes = new { placeholder = "Date of Birth(dd/mm/yyyy)", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email Address", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { placeholder = "ContactNo", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { placeholder = "Create UserId", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Create Password", style = "margin-top: 30px; height: 40px; width: 240px;  border - radius: 5px;  border: none; background - color: #fff; opacity: 0.6; outline: none;   color: #000; padding - left: 10px;     border: 0px;  margin-right: 5px" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <br />
+
+                </div>
+                <div class="form-group">
+                    <div class="buttons">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Sign Up" class="login-btn" />
+                        </div>
+                        <div class="signup-btn">
+                            @Html.ActionLink("Log In", "Login", null, new { @style = "font-size : 14px; display: flex; justify-content : center; align-self: center;" })
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+
+
+        </div>
+
+
+        @*<br>
+            <input type="text" placeholder="First Name" name="fname" required>
+            <input type="password" placeholder="Last Name" name="lname" required>
+            <input type="text" placeholder="Gender" name="gender" required>
+            <input type="text" placeholder="DOB" required>
+            <input type="text" placeholder="Email" name="email" required>
+            <input type="text" placeholder="User Id" name="uid" required>
+            <input type="text" placeholder="Password" name="pwd" required>
+            <br>
+            <input type="submit" class="login-btn butn" value="Sign-Up" />
+            <button class="signup-btn">Log In</button>*@
+        @*</form>*@
+
+
+    </div>
+
+
+    <button class="login-btn">Log In</button>
+    <button class="signup-btn">Sign Up</button>
+
+    <div>
+        <div class="title-body bg1 mySlides">
+            <h1>Welcome To <span>Cognizant</span> Railways</h1>
+            <button class="sign-up-body">Click Here To Log In</button>
+            @*<div class="signup-btn">
+                    @Html.ActionLink("Log In", "Login", null, new { @class = "sign-up-body", @style = "height: 40px; width: 180px; border: none;   border - radius: 20px;  background: linear - gradient(to left, #7787f1, #473ce9);    color: #fff;   font - weight: bolder;   margin - top: 60px;   cursor: pointer; outline: none;   margin - left: 18px; " })
+                </div>*@
+        </div>
+        <div class="title-body bg2 mySlides">
+            <h1>Welcome To <span>Cognizant</span> Railways</h1>
+            <button class="sign-up-body">Click Here To Log In</button>
+        </div>
+        <div class="title-body bg3 mySlides">
+            <h1>Welcome To <span>Cognizant</span> Railways</h1>
+            <button class="sign-up-body">Click Here To Log In</button>
+        </div>
+    </div>
+
+
+    <script>
+        var cta = document.querySelector(".cta");
+        var check = 0;
+
+        cta.addEventListener('click', function (e) {
+            var text = e.target.nextElementSibling;
+            var loginText = e.target.parentElement;
+            text.classList.toggle('show-hide');
+            loginText.classList.toggle('expand');
+            if (check == 0) {
+                cta.innerHTML = "<p>Sign-Up</p>";
+                check++;
+            }
+            else {
+                cta.innerHTML = "<p>Sign-Up</p>";
+                check = 0;
+            }
+        })
+
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 4000); // Change image every 2 seconds
+        }
+
+    </script>
+</body>
+</html>

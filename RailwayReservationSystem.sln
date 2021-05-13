@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayReservationSystem", "RailwayReservationSystem\RailwayReservationSystem.csproj", "{B49D92FF-87BC-442B-AE20-898C7ED73AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49D92FF-87BC-442B-AE20-898C7ED73AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49D92FF-87BC-442B-AE20-898C7ED73AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49D92FF-87BC-442B-AE20-898C7ED73AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49D92FF-87BC-442B-AE20-898C7ED73AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9776CCE-D73D-437A-BA10-FFCA1F53B166}
+	EndGlobalSection
+EndGlobal

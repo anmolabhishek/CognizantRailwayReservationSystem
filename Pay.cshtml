@@ -1,0 +1,243 @@
+﻿@model RailwayReservationSystem.Models.Payment_Details
+
+
+<!DOCTYPE html>
+
+<html >
+<head>
+    <meta charset="utf-8" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 70%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+
+        body {
+            width: 100%;
+            background-color: #efefef;
+            /*font-family: 'kredit', 'Impact', sans-serif;*/
+            text-transform: uppercase;
+        }
+
+        main {
+            margin: 20px auto;
+            width: 500px;
+            height: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 10px;
+            /*    font-weight: bold;*/
+            /*    font-family:'kredit back'*/
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 7px;
+        }
+
+        #cc {
+            margin: 20px auto;
+            border: solid black 1px;
+            width: 86%;
+            height: 53%;
+            background: linear-gradient(to right,rgba(14, 14, 14, 1) 0%,rgba(125, 126, 125, 1) 100%);
+            /*background: linear-gradient(to left, #7787f1, #473ce9); border-radius: 4px;*/
+            color: white;
+            box-shadow: 5px 5px 5px #888888;
+        }
+
+        .rule {
+            color: blue;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        img {
+            width: 25%;
+            float: right;
+            margin: 20px 20px;
+        }
+
+        p {
+            font-size: 9px;
+            color: black;
+            font-weight: 700;
+        }
+
+        #Tcard {
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        #card {
+            margin-top: 40px;
+            margin-bottom: 7px;
+        }
+
+        #name {
+            margin-bottom: 7px;
+        }
+
+        #exp {
+            width: 40%;
+            float: left
+        }
+
+        #cvc {
+            width: 40%;
+            float: left;
+        }
+
+        input {
+            border: none;
+            background: none;
+            border: solid black;
+            width: 40%;
+            margin-left: 50px;
+            float: left;
+            font-family: inherit;
+            font-size: 9px;
+            font-weight: lighter;
+            color: #FFF;
+            text-transform: capitalize;
+        }
+
+            /*input:focus {
+                width: 45%;
+                outline: none;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+            }*/
+
+        #cc p {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        a {
+            border: none;
+            background-color: none;
+            border-radius: 4px;
+            float: right;
+            margin-right: 50px;
+            margin-top: 0;
+            margin-bottom: 7px;
+            margin-left: 10px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+
+</head>
+<body>
+    @*<p class="rule">Cognizant Railways</p>
+    <header>
+        <nav>
+            <button><span><a href="#" type="submit" value="continue">LOG OUT</a></span></button>
+        </nav>
+    </header>*@
+    <main class="clearfix">
+        
+        <h2 style="font-size:17px;">Please enter your card details</h2>
+        <div class="clearfix" id="cc">
+            <img src="http://www.ultimatesecuritydevices.com/assets/images/credit_card_logo.png" />
+            Total amount is:
+            @TempData["Result"]
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                   
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Card_No, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Card_No, new { htmlAttributes = new { @class = "form-control",style="height:22px; color:#fff; margin:5px;",placeholder="Enter Card Number"} })
+                            @Html.ValidationMessageFor(model => model.Card_No, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Card_Holder_Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Card_Holder_Name, new { htmlAttributes = new { @class = "form-control", style = "height:22px; color:#fff; margin:5px;", placeholder = "Enter Card Holder Name" } })
+                            @Html.ValidationMessageFor(model => model.Card_Holder_Name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Card_Type, new { htmlAttributes = new { @class = "form-control", style = "height:22px;color:#fff; margin:5px;", placeholder = "Enter Card Type" } })
+                            @Html.ValidationMessageFor(model => model.Card_Type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group">
+                        @*@Html.LabelFor(model => model.Card_Type, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <!--<div class="col-md-10">
+                            
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.Expiry_Date, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Expiry_Date, new { htmlAttributes = new { @class = "form-control",style = "height:22px;color:#fff; margin:5px;", placeholder = "Enter Expiry Date" } })
+                            @Html.ValidationMessageFor(model => model.Expiry_Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.CVV, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control" ,style = "height:22px;color:#fff; margin:5px;", placeholder = "Enter CVV" } })
+                            @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.Available_Balance, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Available_Balance, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Available_Balance, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>-->*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input style=" height:22px;color:#fff; margin:5px;" type="submit" value="Submit" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </main>
+   
+
+    
+
+
+
+</body>
+</html>

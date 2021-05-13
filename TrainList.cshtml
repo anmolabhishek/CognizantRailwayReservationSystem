@@ -1,0 +1,203 @@
+﻿@model IEnumerable<RailwayReservationSystem.Models.Train_Details>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="TrainList" content="width=device-width, initial-scale=1">
+    <style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to left, #7787f1, #473ce9);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #fff;
+  color: #473ce9;
+  border: 0.5px solid #473ce9;
+}
+
+.active {
+  background-color: blue;
+  color: #fff;
+ width: 60px;
+}
+h1{
+    text-align: center;
+    color: blue;
+    background: linear-gradient(to left, #3548c5, rgb(236, 231, 231));
+    border-radius: 6px;
+    padding: 10px 25px;
+}
+.title{
+    justify-content: center;
+    display: flex;
+    align-self: center;
+}
+span{
+    color: rgb(238, 234, 234);
+}
+.floating{
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  animation-name: example;
+  animation-duration: 7s;
+  animation-delay: 2s;
+  animation-fill-mode: both;
+  color: #fff;
+  text-align: center;
+
+}
+@@keyframes example {
+  from {top: 0px; background: linear-gradient(to left, #6d68b8, #b3b9e0);}
+  to {top: 100px; background: linear-gradient(to left, #7787f1, #473ce9);}
+}
+.message-flow{
+  width: 30%;
+  height: 20px;
+  background: rgb(209, 64, 64);
+  font-weight: bold;
+  position: relative;
+  animation: mymove 7s infinite;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+  color: rgb(231, 221, 219);
+}
+
+#div1 {animation-timing-function: linear;}
+
+@@keyframes mymove {
+  from {left: 0px;}
+  to {left: 830px;}
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #473ce9;
+  color: white;
+}
+.confirm{
+  background-color: rgb(209, 64, 64);
+}
+    </style>
+</head>
+<body>
+
+    @*<ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">About</a></li>
+        <li style="float:right"><a class="active" href="#about">Log Out</a></li>
+    </ul>*@
+
+    <div class="title">
+        <h1>Cognizant Railways: <span>Connecting Every Dot</span></h1>
+    </div>
+
+    <div id="div1" class="message-flow">Because of COVID-19 many trains are cancelled!</div>
+
+    <div style="display: flex;">
+
+        <div class="floating"><h3 style="padding-top: 25px;">Train List</h3></div>
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Source)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Start_Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.End_Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Start_Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.End_Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Train_Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Train_Name)
+                </th>
+                <th class="confirm">Confirmation</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Source)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start_Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End_Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Train_Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Train_Name)
+                    </td>
+                    <td>
+                        
+                        @Html.ActionLink("BookNow", "BookNow", new { id = item.Train_No }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Train_No }) |
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.Train_No })*@
+                        </td>
+                        </tr>
+                    }
+
+                    </table>
+        </div>
+
+</body>
+</html>
